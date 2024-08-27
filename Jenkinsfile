@@ -5,6 +5,9 @@ pipeline {
         
     }
 }
+environment { 
+        GREETINGS = 'Hello-Jenkins'
+    }
     stages {
         stage('Example Build') {
             steps {
@@ -18,6 +21,19 @@ pipeline {
             steps {
                 echo 'Deploying'
             }
+            steps {
+                sh """
+                    echo "Here i wrote shell script"
+                    env
+                """
+            }
+        }
+    
+    }
+
+     post { 
+        always { 
+            echo 'I will always say Hello again!'
         }
     }
 }
